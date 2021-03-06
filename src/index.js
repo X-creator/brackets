@@ -1,18 +1,12 @@
 module.exports = function check(str, bracketsConfig) {
 
-    let sequenceB = str.split('');
-    let brackets = {};
-    let openingB = [];
-    let closingB = [];
-
-    let bracketsKeys = (op, cl) => {
-        let exist = [];
-        brackets[op] = exist;
-        brackets[cl] = exist;
-    };
+    let sequenceB = str.split(''),
+        brackets = {},
+        openingB = [],
+        closingB = [];
 
     for (let [op, cl] of bracketsConfig) {
-        bracketsKeys(op, cl);
+        brackets[op] = brackets[cl] = [];
         openingB.push(op);
         closingB.push(cl);
     }
@@ -31,9 +25,9 @@ module.exports = function check(str, bracketsConfig) {
     }
 
     for (let exist of Object.values(brackets)) {
-        if (exist.length) return false
+        if (exist.length) return false;
     }
     return true;
-}
+};
 
 
